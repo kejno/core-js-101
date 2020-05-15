@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 /* *******************************************************************************************
  *                                                                                           *
  * Plese read the following tutorial before implementing tasks:                              *
@@ -112,13 +113,14 @@ function timeSpanToString(startDate, endDate) {
  *    Date.UTC(2016,3,5,18, 0) => Math.PI
  *    Date.UTC(2016,3,5,21, 0) => Math.PI/2
  */
-function angleBetweenClockHands(/* date */) {
-  /*   const hour = date.getUTCHours();
-    const min = date.getUTCMinutes();
-    const newh = hour > 11 ? hour - 12 : hour;
-    const res = Math.PI * (((60 * newh - 11 * min)) / 360);
-    return res; */
-  throw new Error('Not implemented');
+function angleBetweenClockHands(date) {
+  const hour1 = 1000 * 60 * 60 * 12;
+  const minute1 = 1000 * 60 * 60;
+  const hour2 = (360 * (date % hour1)) / hour1;
+  const minute2 = (360 * (date % minute1)) / minute1;
+  let item = Math.abs(minute2 - hour2);
+  item > 180 ? item = 360 - item : null;
+  return (item * 2 * Math.PI) / 360;
 }
 
 
